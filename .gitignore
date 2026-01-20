@@ -1,0 +1,68 @@
+# Build directories
+build/
+out/
+bin/
+lib/
+cmake-build-*/
+
+# IDE specific files
+.vs/
+.vscode/.cache
+*.vcxproj*
+*.sln
+*.user
+*.suo
+*.filters
+
+# CLion
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+
+# Compiled Object files
+*.o
+*.obj
+*.ko
+*.elf
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Compiled Static libraries
+*.a
+*.lib
+*.la
+*.lo
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps/
+
+# OS specific
+.DS_Store
+Thumbs.db
+*~
+*.swp
+*.swo
