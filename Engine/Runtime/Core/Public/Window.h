@@ -17,6 +17,7 @@ namespace Amuse::Core
      */
     class Window
     {
+        using NativeWindow = GLFWwindow*;
     public:
         /**
          * @struct Specification
@@ -74,7 +75,7 @@ namespace Amuse::Core
          * @return NativeWindow 윈도우의 순수 핸들.
          */
         [[nodiscard]]
-        GLFWwindow* GetNativeHandle() const noexcept;
+        NativeWindow GetNativeHandle() const noexcept;
 
         /**
          * @brief 해당 윈도우의 사양을 반환합니다.
@@ -116,7 +117,7 @@ namespace Amuse::Core
         /**
          * @brief 해당 윈도우의 순수 핸들.
          */
-        GLFWwindow* handle;
+        NativeWindow handle;
 
         /**
          * @brief 해당 윈도우의 사양.

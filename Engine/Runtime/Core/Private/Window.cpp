@@ -65,7 +65,7 @@ namespace Amuse::Core
         glfwSwapBuffers(handle);
     }
 
-    GLFWwindow* Window::GetNativeHandle() const noexcept
+    Window::NativeWindow Window::GetNativeHandle() const noexcept
     {
         return handle;
     }
