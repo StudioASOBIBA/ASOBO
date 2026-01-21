@@ -1,9 +1,7 @@
 # Amuse
 
-Amuse - Multi-platform 3D/2D Game Runtime Library & Editor
-
-A cross-platform game development library and editor written in C/C++, supporting Windows, Linux, and macOS.
+Amuse - 멀티 플랫폼 2D & 3D 게임 런타임 라이브리 및 에디터 프로젝트 
 
 ## License
 
-See LICENSE file for details.
+자세한 내용은 LICENSE 파일을 참조하세요.
