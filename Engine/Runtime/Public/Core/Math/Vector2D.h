@@ -1,4 +1,0 @@
-#ifndef GUARD_VECTOR2D_H
-#define GUARD_VECTOR2D_H
-
-#endif // !GUARD_VECTOR2D_H

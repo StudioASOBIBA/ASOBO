@@ -10,8 +10,9 @@ include("CMake/Settings.cmake")
 include("CMake/Dependencies.cmake")
 
 # Build options
-option(AMUSE_BUILD_RUNTIME "Build ASOBO runtime library" ON)
-option(AMUSE_BUILD_EDITOR "Build ASOBO editor" ON)
+option(AMUSE_BUILD_RUNTIME "Build Amuse runtime library" ON)
+option(AMUSE_BUILD_EDITOR "Build Amuse editor" ON)
+option(AMUSE_BUILD_EXAMPLES "Build Amuse examples" ON)
 
 # Global include directories
 include_directories(${CMAKE_SOURCE_DIR}/include)
@@ -23,6 +24,10 @@ endif()
 
 if(AMUSE_BUILD_EDITOR)
     add_subdirectory("Engine/Editor")
+endif()
+
+if(AMUSE_BUILD_EXAMPLES)
+    add_subdirectory("Engine/Examples")
 endif()
 
 # Installation

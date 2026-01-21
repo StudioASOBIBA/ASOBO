@@ -1,14 +1,14 @@
 # Runtime library CMake configuration
 
 set(AMUSE_RUNTIME_SOURCES
-    "${CMAKE_SOURCE_DIR}/Engine/Runtime/Private/Core/Application.cpp"
-    "${CMAKE_SOURCE_DIR}/Engine/Runtime/Private/Core/Window.cpp"
+    "${CMAKE_SOURCE_DIR}/Engine/Runtime/Core/Private/Application.cpp"
+    "${CMAKE_SOURCE_DIR}/Engine/Runtime/Core/Private/Window.cpp"
 )
 
 set(AMUSE_RUNTIME_HEADERS
-    "${CMAKE_SOURCE_DIR}/Engine/Runtime/Public/Amuse.h"
-    "${CMAKE_SOURCE_DIR}/Engine/Runtime/Public/Core/Application.h"
-    "${CMAKE_SOURCE_DIR}/Engine/Runtime/Public/Core/Window.h"
+    "${CMAKE_SOURCE_DIR}/Engine/Runtime/Core/Public/Math/Vector2D.h"
+    "${CMAKE_SOURCE_DIR}/Engine/Runtime/Core/Public/Application.h"
+    "${CMAKE_SOURCE_DIR}/Engine/Runtime/Core/Public/Window.h"
 )
 
 # Create runtime library
@@ -30,10 +30,9 @@ add_library(Runtime STATIC
 )
 
 target_include_directories(Runtime
-        PUBLIC
-        $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/Engine/Runtime/Public>
-        $<INSTALL_INTERFACE:include>
-        PRIVATE
+    PUBLIC
+        ${CMAKE_SOURCE_DIR}/Engine/Runtime/Core/Public
+    PRIVATE
         ${CMAKE_SOURCE_DIR}/Engine/ThirdParty/assimp/include
 
         ${CMAKE_SOURCE_DIR}/Engine/ThirdParty/dr_libs
@@ -42,17 +41,24 @@ target_include_directories(Runtime
         ${CMAKE_SOURCE_DIR}/Engine/ThirdParty/fmod/fsbank/inc
         ${CMAKE_SOURCE_DIR}/Engine/ThirdParty/fmod/studio/inc
 
-        ${CMAKE_SOURCE_DIR}/Engine/ThirdParty/glm
-
         ${CMAKE_SOURCE_DIR}/Engine/ThirdParty/glad
 
         ${CMAKE_SOURCE_DIR}/Engine/ThirdParty/glfw/include
+
+        ${CMAKE_SOURCE_DIR}/Engine/ThirdParty/glm
+
         ${CMAKE_SOURCE_DIR}/Engine/ThirdParty/imgui
         ${CMAKE_SOURCE_DIR}/Engine/ThirdParty/imgui/backends
 
         ${CMAKE_SOURCE_DIR}/Engine/ThirdParty/imguizmo
 
         ${CMAKE_SOURCE_DIR}/Engine/ThirdParty/stb
+)
+
+target_link_libraries(Runtime
+        PUBLIC
+        OpenGL32
+        glfw  # GLFW 라이브러리를 Runtime과 연결하고, 이를 사용하는 Example1에도 전파
 )
 
 set_target_properties(Runtime PROPERTIES
