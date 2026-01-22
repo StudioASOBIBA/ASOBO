@@ -4,32 +4,32 @@
 #include <type_traits>
 
 /**
- * @struct Vector2D
+ * @struct Vector4D
  *
- * @brief 2차원 벡터를 정의합니다.
+ * @brief 3차원 벡터를 정의합니다.
  */
 template <typename TValue>
     requires std::is_arithmetic_v<TValue>
-class Vector2D final
+class Vector4D final
 {
 public:
-    Vector2D() noexcept
+    Vector4D() noexcept
         : values(static_cast<TValue>(0), static_cast<TValue>(0))
     {
     }
 
-    Vector2D(TValue x_, TValue y_) noexcept
-        : values(x_, y_)
+    Vector4D(TValue x_, TValue y_, TValue z_, TValue w_) noexcept
+        : values(x_, y_, z_, w_)
     {
     }
 
-    Vector2D(TValue value) noexcept
-        : values(value, value)
+    Vector4D(TValue value) noexcept
+        : values(value, value, value, value)
     {
     }
 
-    Vector2D(const Vector2D& other_) noexcept
-        : values(other_.values[0], other_.values[1])
+    Vector4D(const Vector4D& other_) noexcept
+        : values(other_.values[0], other_.values[1], other_.value[2], other_.value[3])
     {
     }
 
@@ -60,6 +60,28 @@ public:
     {
         values[1] = y_;
     }
+
+    [[nodiscard]]
+    constexpr inline TValue GetZ() const noexcept
+    {
+        return values[2];
+	}
+
+    inline void SetZ(TValue z_) noexcept
+    {
+        values[2] = z_;
+	}
+
+    [[nodiscard]]
+    constexpr inline TValue GetW() const noexcept
+    {
+        return values[3];
+    }
+
+    inline void SetW(TValue w_) noexcept
+    {
+        values[3] = w_;
+	}
 
 private:
     /**
