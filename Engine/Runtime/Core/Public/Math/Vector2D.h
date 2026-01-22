@@ -3,69 +3,123 @@
 
 #include <type_traits>
 
-/**
- * @struct Vector2D
- *
- * @brief 2차원 벡터를 정의합니다.
- */
-template <typename TValue>
-    requires std::is_arithmetic_v<TValue>
-class Vector2D final
+namespace Amuse::Math
 {
-public:
-    Vector2D() noexcept
-        : values(static_cast<TValue>(0), static_cast<TValue>(0))
-    {
-	}
-
-    Vector2D(TValue x_, TValue y_) noexcept
-        : values(x_, y_)
-    {
-    }
-
-    Vector2D(TValue value) noexcept
-        : values(value, value)
-    {
-    }
-
-    Vector2D(const Vector2D& other_) noexcept
-        : values(other_.values[0], other_.values[1])
-    {
-	}
-
-    [[nodiscard]]
-    constexpr TValue operator[](std::size_t index_) const noexcept
-    {
-        return values[index_];
-	}
-
-    [[nodiscard]]
-    constexpr inline TValue GetX() const noexcept
-    {
-        return values[0];
-    }
-
-    inline void SetX(TValue x_) noexcept
-    {
-        values[0] = x_;
-	}
-
-    [[nodiscard]] 
-    constexpr inline TValue GetY() const noexcept
-    {
-        return values[1];
-    }
-
-    inline void SetY(TValue y_) noexcept
-    {
-        values[1] = y_;
-	}
-
-private:
     /**
-     * @brief 해당 벡터의 좌표들.
+     * @struct Vector2D
+     *
+     * @brief 2차원 벡터를 정의합니다.
      */
-    TValue values[2];
-};
+    template <typename TValue>
+        requires std::is_arithmetic_v<TValue>
+    struct Vector2D final
+    {
+        explicit Vector2D() noexcept
+            : values(static_cast<TValue>(0), static_cast<TValue>(0))
+        {
+        }
+
+        explicit Vector2D(TValue x_, TValue y_) noexcept
+            : values(x_, y_)
+        {
+        }
+
+        explicit Vector2D(TValue value) noexcept
+            : values(value, value)
+        {
+        }
+
+        explicit Vector2D(const Vector2D& other_) noexcept
+            : values(other_.values[0], other_.values[1])
+        {
+        }
+
+        [[nodiscard]]
+        constexpr const TValue& operator[](std::size_t index_) const noexcept
+        {
+            return values[index_];
+        }
+
+        [[nodiscard]]
+        constexpr Vector2D<TValue> operator+(const Vector2D<TValue>& other_) const noexcept
+        {
+            return Vector2D<TValue>(x + other_.values[0], y + other_.values[1]);
+		}
+
+        [[nodiscard]]
+        constexpr Vector2D<TValue> operator+=(const Vector2D<TValue>& other_) noexcept
+        {
+            x += other_.x;
+            y += other_.y;
+
+            return *this;
+        }
+
+        [[nodiscard]]
+        constexpr Vector2D<TValue> operator-(const Vector2D<TValue>& other_) const noexcept
+        {
+            return Vector2D<TValue>(x - other_.values[0], y - other_.values[1]);
+		}
+
+        [[nodiscard]]
+        constexpr Vector2D<TValue> operator-=(const Vector2D<TValue>& other_) noexcept
+        {
+            x -= other_.x;
+            y -= other_.y;
+
+            return *this;
+		}
+
+        [[nodiscard]]
+        constexpr Vector2D<TValue> operator*(TValue scalar_) const noexcept
+        {
+            return Vector2D<TValue>(x * scalar_, y * scalar_);
+        }
+
+        [[nodiscard]]
+        constexpr Vector2D<TValue> operator*=(TValue scalar_) noexcept
+        {
+            x *= scalar_;
+            y *= scalar_;
+
+            return *this;
+		}
+
+        [[nodiscard]]
+        constexpr Vector2D operator/(TValue scalar) const
+        {
+            return Vector2D(x / scalar, y / scalar);
+        }
+
+        constexpr Vector2D& operator/=(TValue scalar)
+        {
+            x /= scalar;
+            y /= scalar;
+
+            return *this;
+        }
+
+        union
+        {
+            struct
+            {
+                /**
+                 * @brief
+                 */
+                TValue x;
+
+                /**
+                 * @brief
+                 */
+                TValue y;
+            };
+
+            /**
+             * @brief 해당 벡터의 좌표들.
+             */
+            TValue values[2];
+        };
+    };
+} // namespace Core::Math
 
 #endif // !AMUSE_INCLUDE_VECTOR2D_H
