@@ -1,4 +1,5 @@
-add_library(ThirdParty STATIC
+add_library(Amuse_ThirdParty
+    OBJECT
         "${CMAKE_SOURCE_DIR}/Engine/ThirdParty/glad/glad.c"
 
         "${CMAKE_SOURCE_DIR}/Engine/ThirdParty/imgui/imgui.cpp"
@@ -12,7 +13,8 @@ add_library(ThirdParty STATIC
         "${CMAKE_SOURCE_DIR}/Engine/ThirdParty/imguizmo/ImGuizmo.cpp"
 )
 
-target_include_directories(ThirdParty PUBLIC
+target_include_directories(Amuse_ThirdParty
+    PUBLIC
         "${CMAKE_SOURCE_DIR}/Engine/ThirdParty/glad"
 
         "${CMAKE_SOURCE_DIR}/Engine/ThirdParty/imgui"
@@ -35,25 +37,26 @@ target_include_directories(ThirdParty PUBLIC
         "${CMAKE_SOURCE_DIR}/Engine/ThirdParty/dr_libs"
 )
 
-target_compile_definitions(ThirdParty
-        PUBLIC
+target_compile_definitions(Amuse_ThirdParty
+    PUBLIC
         IMGUI_IMPL_OPENGL_LOADER_GLAD
 )
 
-add_subdirectory(Core)
-add_subdirectory(App)
+add_subdirectory("App")
+add_subdirectory("Core")
 
-add_library(Runtime STATIC
-        $<TARGET_OBJECTS:App>
-        $<TARGET_OBJECTS:Core>
+add_library(AmuseRuntime
+    STATIC
+        $<TARGET_OBJECTS:AmuseApp>
+        $<TARGET_OBJECTS:AmuseCore>
 )
 
-target_link_libraries(Runtime INTERFACE
-        PUBLIC
-        App     # App의 헤더 경로 등을 상속
-        Core    # Core의 헤더 경로 등을 상속
-        PRIVATE
-        ThirdParty
+target_link_libraries(AmuseRuntime INTERFACE
+    PUBLIC
+        AmuseApp     # App의 헤더 경로 등을 상속
+        AmuseCore    # Core의 헤더 경로 등을 상속
+    PRIVATE
+        AmuseThirdParty
         glfw
         OpenGL32
 )

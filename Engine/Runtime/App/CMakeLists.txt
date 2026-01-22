@@ -1,4 +1,4 @@
-add_library(App OBJECT
+add_library(AmuseApp STATIC
         "App.h"
         "Private/Application.cpp"
         "Private/Window.cpp"
@@ -6,13 +6,13 @@ add_library(App OBJECT
         "Public/Window.h"
 )
 
-target_include_directories(App PUBLIC
+target_include_directories(AmuseApp PUBLIC
         "${CMAKE_CURRENT_SOURCE_DIR}/Public"
 )
 
-target_link_libraries(App
+target_link_libraries(AmuseApp
         PUBLIC
-        Core
+        AmuseCore
         PRIVATE
         ThirdParty
         glfw
