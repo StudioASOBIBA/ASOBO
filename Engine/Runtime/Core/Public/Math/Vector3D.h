@@ -28,7 +28,7 @@ public:
     {
 	}
 
-    Vector3D(const Vector2D& other_) noexcept
+    Vector3D(const Vector3D& other_) noexcept
         : values(other_.values[0], other_.values[1], other_.values[2])
     {
     }
