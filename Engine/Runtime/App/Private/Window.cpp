@@ -1,4 +1,4 @@
-#include "../Public/Window.h"
+#include "Window.h"
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -6,7 +6,7 @@
 #include <cassert>
 #include <stdexcept>
 
-namespace Amuse::Core
+namespace Amuse::App
 {
     Window::Window(const Window::Specification& specification_) noexcept
         : specification(specification_)
@@ -34,8 +34,8 @@ namespace Amuse::Core
         #endif
 
         handle = glfwCreateWindow(
-            specification.size.GetX(),
-            specification.size.GetY(),
+            specification.size.x,
+            specification.size.y,
             specification.title.c_str(),
             nullptr,
             nullptr

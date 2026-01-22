@@ -8,7 +8,7 @@
 
 struct GLFWwindow;
 
-namespace Amuse::Core
+namespace Amuse::App
 {
     /**
      * @file Window.h
@@ -29,17 +29,17 @@ namespace Amuse::Core
             /**
              * @brief 윈도우의 제목.
              */
-            std::string title = "New Window";
+            std::string title;
 
             /**
              * @brief 윈도우의 위치.
              */
-            Vector2D<int> position = {100, 100};
+            Math::Vector2D<int> position;
 
             /**
              * @brief 윈도우의 크기.
              */
-            Vector2D<int> size = {800, 600};
+            Math::Vector2D<int> size;
         };
 
         /**
