@@ -18,6 +18,7 @@ namespace Amuse::Math
             : x(static_cast<TValue>(0))
             , y(static_cast<TValue>(0))
             , z(static_cast<TValue>(0))
+            , w(static_cast<TValue>(0))
         {
         }
 
