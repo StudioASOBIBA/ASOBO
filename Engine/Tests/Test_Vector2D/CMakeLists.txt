@@ -1,5 +1,5 @@
 add_executable(Test_Vector2D "Test_Vector2D.cpp")
-target_link_libraries(Test_Vector2D PRIVATE Runtime)
+target_link_libraries(Test_Vector2D PRIVATE AmuseRuntime)
 
 set_target_properties(Test_Vector2D PROPERTIES
     RUNTIME_OUTPUT_NAME "Test_Vector2D"
