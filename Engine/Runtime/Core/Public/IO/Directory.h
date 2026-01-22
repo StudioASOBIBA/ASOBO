@@ -1,0 +1,4 @@
+#ifndef GUARD_DIRECTORY_H
+#define GUARD_DIRECTORY_H
+
+#endif // !GUARD_DIRECTORY_H
