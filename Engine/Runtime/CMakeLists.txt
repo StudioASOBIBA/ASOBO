@@ -6,7 +6,10 @@ set(AMUSE_RUNTIME_SOURCES
 )
 
 set(AMUSE_RUNTIME_HEADERS
+    "${CMAKE_SOURCE_DIR}/Engine/Runtime/Core/Public/Math/Matrix.h"
     "${CMAKE_SOURCE_DIR}/Engine/Runtime/Core/Public/Math/Vector2D.h"
+    "${CMAKE_SOURCE_DIR}/Engine/Runtime/Core/Public/Math/Vector3D.h"
+    "${CMAKE_SOURCE_DIR}/Engine/Runtime/Core/Public/Math/Vector4D.h"
     "${CMAKE_SOURCE_DIR}/Engine/Runtime/Core/Public/Application.h"
     "${CMAKE_SOURCE_DIR}/Engine/Runtime/Core/Public/Window.h"
 )
@@ -27,7 +30,7 @@ add_library(Runtime STATIC
 
     ${AMUSE_RUNTIME_SOURCES}
     ${AMUSE_RUNTIME_HEADERS}
-)
+ "Core/Public/Math/Vector3D.h")
 
 target_include_directories(Runtime
     PUBLIC
