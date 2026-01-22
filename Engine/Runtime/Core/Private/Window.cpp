@@ -34,8 +34,8 @@ namespace Amuse::Core
         #endif
 
         handle = glfwCreateWindow(
-            specification.size.x,
-            specification.size.y,
+            specification.size.GetX(),
+            specification.size.GetY(),
             specification.title.c_str(),
             nullptr,
             nullptr
