@@ -1,9 +1,9 @@
 #ifndef GUARD_PATH_H
 #define GUARD_PATH_H
 
-namespace Amuse::IO
+namespace Amuse::IO::Path
 {
-    void Test();
-}
+
+} // namespace Amuse::IO::Path
 
 #endif // !GUARD_PATH_H

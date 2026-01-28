@@ -53,10 +53,11 @@ add_library(AmuseRuntime
 
 target_link_libraries(AmuseRuntime INTERFACE
     PUBLIC
-        AmuseApp     # App의 헤더 경로 등을 상속
-        AmuseCore    # Core의 헤더 경로 등을 상속
+        AmuseApp
+        AmuseCore
     PRIVATE
-        AmuseThirdParty
-        glfw
+        Amuse_ThirdParty
+        glfw    
         OpenGL32
+        spdlog::spdlog
 )

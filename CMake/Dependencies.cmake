@@ -8,6 +8,7 @@ set(BUILD_SHARED_LIBS OFF)
 
 add_subdirectory("Engine/ThirdParty/assimp")
 add_subdirectory("Engine/ThirdParty/glfw")
+add_subdirectory("Engine/ThirdParty/spdlog")
 
 set(FMOD_ROOT "${CMAKE_SOURCE_DIR}/Engine/ThirdParty/fmod")
 
