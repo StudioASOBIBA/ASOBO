@@ -3,7 +3,7 @@
 
 #include <type_traits>
 
-namespace Amuse::Math
+namespace Amuse::Core::Math
 {
     /**
      * @struct Vector3D
@@ -14,128 +14,31 @@ namespace Amuse::Math
         requires std::is_arithmetic_v<TValue>
     struct Vector3D final
     {
-        explicit Vector3D() noexcept
-            : x(static_cast<TValue>(0))
-            , y(static_cast<TValue>(0))
-            , z(static_cast<TValue>(0))
+        union
         {
-        }
-
-        explicit Vector3D(TValue x_, TValue y_, TValue z_) noexcept
-            : x(x_)
-            , y(y_)
-            , z(z_)
-        {
-        }
-
-        explicit Vector3D(TValue value) noexcept
-            : x(value)
-            , y(value)
-            , z(value)
-        {
-        }
-
-        explicit Vector3D(const Vector3D& other_) noexcept
-            : x(other_.x)
-            , y(other_.y)
-            , z(other_.z)
-        {
-        }
-
-        [[nodiscard]]
-        constexpr const TValue& operator[](std::size_t index_) const noexcept
-        {
-            switch (index_)
+            struct
             {
-                case 0:
-                    return x;
-                case 1:
-                    return y;
-                case 2:
-                    return z;
-                default:
-                    static_assert(false, "Invalid index");
-                    break;
-            }
-        }
+                /**
+                 * @brief x 좌표.
+                 */
+                TValue x;
 
-        [[nodiscard]]
-        constexpr Vector3D<TValue> operator+(const Vector3D<TValue>& other_) const noexcept
-        {
-            return Vector3D<TValue>(x + other_.x, y + other_.y, z + other_.z);
-		}
+                /**
+                 * @brief y 좌표.
+                 */
+                TValue y;
 
-        [[nodiscard]]
-        constexpr Vector3D<TValue> operator+=(const Vector3D<TValue>& other_) noexcept
-        {
-            x += other_.x;
-            y += other_.y;
-            z += other_.z;
+                /**
+                 * @brief z 좌표.
+                 */
+				TValue z;
+            };
 
-            return *this;
-        }
-
-        [[nodiscard]]
-        constexpr Vector3D<TValue> operator-(const Vector3D<TValue>& other_) const noexcept
-        {
-            return Vector3D<TValue>(x - other_.x, y - other_.y, z - other_.z);
-		}
-
-        [[nodiscard]]
-        constexpr Vector3D<TValue> operator-=(const Vector3D<TValue>& other_) noexcept
-        {
-            x -= other_.x;
-            y -= other_.y;
-            z -= other_.z;
-
-            return *this;
-		}
-
-        [[nodiscard]]
-        constexpr Vector3D<TValue> operator*(TValue scalar_) const noexcept
-        {
-            return Vector3D<TValue>(x * scalar_, y * scalar_, z * scalar_);
-        }
-
-        [[nodiscard]]
-        constexpr Vector3D<TValue> operator*=(TValue scalar_) noexcept
-        {
-            x *= scalar_;
-            y *= scalar_;
-            z *= scalar_;
-
-            return *this;
-		}
-
-        [[nodiscard]]
-        constexpr Vector3D operator/(TValue scalar) const
-        {
-            return Vector3D(x / scalar, y / scalar, z / scalar);
-        }
-
-        constexpr Vector3D& operator/=(TValue scalar)
-        {
-            x /= scalar;
-            y /= scalar;
-            z /= scalar;
-
-            return *this;
-        }
-
-        /**
-         * @brief
-         */
-        TValue x;
-
-        /**
-         * @brief
-         */
-        TValue y;
-
-        /**
-         * @brief
-         */
-        TValue z;
+			/**
+			 * @brief 인덱싱을 위한 배열.
+             */
+			TValue values[3];
+        };
     };
 } // namespace Amuse::Math
 

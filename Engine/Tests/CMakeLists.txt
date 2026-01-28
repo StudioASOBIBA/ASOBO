@@ -1,1 +1,1 @@
-add_subdirectory(Test_Vector2D)
+add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/Core/Math/Vector2D")
