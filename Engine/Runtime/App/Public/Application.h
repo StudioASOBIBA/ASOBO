@@ -130,6 +130,11 @@ namespace Amuse::App
          */
         bool isRunning;
 
+		/**
+		 * @brief 메인 윈도우.
+		 */
+    	Window* mainWindow;
+
         /**
          * @brief 해당 애플리케이션의 윈도우들.
          */
