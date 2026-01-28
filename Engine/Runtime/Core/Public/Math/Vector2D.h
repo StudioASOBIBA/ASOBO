@@ -99,26 +99,15 @@ namespace Amuse::Math
             return *this;
         }
 
-        union
-        {
-            struct
-            {
-                /**
-                 * @brief
-                 */
-                TValue x;
+        /**
+         * @brief x 좌표.
+         */
+        TValue x;
 
-                /**
-                 * @brief
-                 */
-                TValue y;
-            };
-
-            /**
-             * @brief 해당 벡터의 좌표들.
-             */
-            TValue values[2];
-        };
+        /**
+         * @brief y 좌표.
+         */
+        TValue y;
     };
 } // namespace Core::Math
 
