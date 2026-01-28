@@ -14,105 +14,123 @@ namespace Amuse::Math
         requires std::is_arithmetic_v<TValue>
     struct Vector2D final
     {
-        explicit Vector2D() noexcept
-            : values(static_cast<TValue>(0), static_cast<TValue>(0))
-        {
-        }
+        /**
+         * @brief 생성자.
+         */
+        explicit Vector2D() noexcept;
 
-        explicit Vector2D(TValue x_, TValue y_) noexcept
-            : values(x_, y_)
-        {
-        }
+        /**
+         * @brief 생성자.
+         *
+         * @param x_ 생성할 2차원 벡터의 x 좌표 값
+         * @param y_ 생성할 2차원 벡터의 y 좌표 값
+		 */
+        explicit Vector2D(TValue x_, TValue y_) noexcept;
 
-        explicit Vector2D(TValue value) noexcept
-            : values(value, value)
-        {
-        }
+        /**
+         * @brief 생성자.
+         * 
+		 * @param value 생성할 2차원 벡터의 x, y 좌표 값
+         */
+        explicit Vector2D(TValue value) noexcept;
 
-        explicit Vector2D(const Vector2D& other_) noexcept
-            : values(other_.values[0], other_.values[1])
-        {
-        }
+        /**
+         * @brief 복사 생성자.
+         *
+         * @param other_ 복사할 2차원 벡터
+		 */
+        explicit Vector2D(const Vector2D& other_) noexcept;
 
+#pragma region Operators
+        /**
+		 * @brief 인덱스 연산자.
+         * 
+         * @param index_ 지정할 인덱스
+         * 
+         * @return TValue& 지정한 인덱스에 따른 해당 벡터의 좌표 값
+         */
         [[nodiscard]]
-        constexpr const TValue& operator[](std::size_t index_) const noexcept
-        {
-            switch (index_)
-            {
-                case 0:
-                {
-                    return x;
-                }
-				case 1:
-                {
-					return y;
-                }
-                default:
-                {
-                    static_assert(index_ < 2, "Index out of bounds in Vector2D.");
-                    break;
-                }
-            }
-        }
+        constexpr TValue& operator[](std::size_t index_) const noexcept;
 
+        /**
+		 * @brief 더하기 연산자.
+         * 
+		 * @param other_ 지정할 2차원 벡터
+         * 
+		 * @return Vector2D<TValue> 해당 2차원 벡터에 지정한 2차원 벡터와 더한 결과
+         */
         [[nodiscard]]
-        constexpr Vector2D<TValue> operator+(const Vector2D<TValue>& other_) const noexcept
-        {
-            return Vector2D<TValue>(x + other_.values[0], y + other_.values[1]);
-		}
+        constexpr Vector2D<TValue> operator+(const Vector2D<TValue>& other_) const noexcept;
 
+        /**
+		 * @brief 더하기 & 대입 연산자.
+         * 
+         * @param other_ 지정할 2차원 벡터
+         * 
+		 * @return Vector2D<TValue>& 해당 2차원 벡터에 지정한 2차원 벡터를 더한 결과
+         */
         [[nodiscard]]
-        constexpr Vector2D<TValue> operator+=(const Vector2D<TValue>& other_) noexcept
-        {
-            x += other_.x;
-            y += other_.y;
+        constexpr Vector2D<TValue>& operator+=(const Vector2D<TValue>& other_) noexcept;
 
-            return *this;
-        }
-
+        /**
+		 * @brief 뺄셈 연산자.
+         * 
+         * @param other_ 지정할 2차원 벡터
+         * 
+		 * @return Vector2D<TValue> 해당 2차원 벡터에 지정한 2차원 벡터를 뺀 결과
+         */
         [[nodiscard]]
-        constexpr Vector2D<TValue> operator-(const Vector2D<TValue>& other_) const noexcept
-        {
-            return Vector2D<TValue>(x - other_.values[0], y - other_.values[1]);
-		}
+        constexpr Vector2D<TValue> operator-(const Vector2D<TValue>& other_) const noexcept;
 
+        /**
+		 * @brief 뺄셈 & 대입 연산자.
+         * 
+         * @param other_ 지정할 2차원 벡터
+         * 
+		 * @return Vector2D<TValue>& 해당 2차원 벡터에 지정한 2차원 벡터를 뺀 결과
+         */
         [[nodiscard]]
-        constexpr Vector2D<TValue> operator-=(const Vector2D<TValue>& other_) noexcept
-        {
-            x -= other_.x;
-            y -= other_.y;
+        constexpr Vector2D<TValue>& operator-=(const Vector2D<TValue>& other_) noexcept;
 
-            return *this;
-		}
-
+        /**
+		 * @brief 곱셈 연산자.
+         * 
+		 * @param scalar_ 지정할 스칼라 값
+         * 
+		 * @return Vector2D<TValue> 해당 2차원 벡터에 지정한 스칼라 값을 곱한 결과
+         */
         [[nodiscard]]
-        constexpr Vector2D<TValue> operator*(TValue scalar_) const noexcept
-        {
-            return Vector2D<TValue>(x * scalar_, y * scalar_);
-        }
+        constexpr Vector2D<TValue> operator*(TValue scalar_) const noexcept;
 
+        /**
+		 * @brief 곱셈 & 대입 연산자.
+         * 
+         * @param scalar_ 지정할 스칼라 값
+         * 
+		 * @return Vector2D<TValue> 해당 2차원 벡터에 지정한 스칼라 값을 곱한 결과
+         */
         [[nodiscard]]
-        constexpr Vector2D<TValue> operator*=(TValue scalar_) noexcept
-        {
-            x *= scalar_;
-            y *= scalar_;
+        constexpr Vector2D<TValue>& operator*=(TValue scalar_) noexcept;
 
-            return *this;
-		}
-
+        /**
+		 * @brief 나눗셈 연산자.
+         * 
+         * @param scalar 지정할 스칼라 값
+         * 
+		 * @return Vector2D<TValue> 해당 2차원 벡터에 지정한 스칼라 값을 나눈 결과
+		 */
         [[nodiscard]]
-        constexpr Vector2D operator/(TValue scalar) const
-        {
-            return Vector2D(x / scalar, y / scalar);
-        }
+        constexpr Vector2D operator/(TValue scalar) const noexcept;
 
-        constexpr Vector2D& operator/=(TValue scalar)
-        {
-            x /= scalar;
-            y /= scalar;
-
-            return *this;
-        }
+        /**
+		 * @brief 나눗셈 & 대입 연산자.
+         * 
+		 * @param scalar 지정할 스칼라 값
+         * 
+		 * @return Vector2D<TValue>& 해당 2차원 벡터에 지정한 스칼라 값을 나눈 결과
+         */
+        constexpr Vector2D& operator/=(TValue scalar) noexcept;
+#pragma endregion Operators
 
         /**
          * @brief x 좌표.
@@ -124,6 +142,127 @@ namespace Amuse::Math
          */
         TValue y;
     };
+
+    template <typename TValue>
+		requires std::is_arithmetic_v<TValue>
+    Vector2D<TValue>::Vector2D() noexcept
+        : x(static_cast<TValue>(0))
+        , y(static_cast<TValue>(0))
+    {
+	}
+
+    template <typename TValue>
+        requires std::is_arithmetic_v<TValue>
+    Vector2D<TValue>::Vector2D(TValue x_, TValue y_) noexcept
+        : x(x_)
+        , y(y_)
+    {
+	}
+
+    template <typename TValue>
+        requires std::is_arithmetic_v<TValue>
+    Vector2D<TValue>::Vector2D(TValue value) noexcept
+        : x(value)
+        , y(value)
+    {
+	}
+
+    template <typename TValue>
+        requires std::is_arithmetic_v<TValue>
+    Vector2D<TValue>::Vector2D(const Vector2D& other_) noexcept
+        : x(other_.x)
+        , y(other_.y)
+    {
+	}
+
+    template <typename TValue>
+        requires std::is_arithmetic_v<TValue>
+    constexpr TValue& Vector2D<TValue>::operator[](std::size_t index_) const noexcept
+    {
+        switch (index_)
+        {
+            case 0:
+            {
+                return x;
+            }
+            case 1:
+            {
+                return y;
+            }
+            default:
+            {
+                static_assert(index_ < 2, "Index out of bounds in Vector2D.");
+                break;
+            }
+        }
+	}
+
+    template <typename TValue>
+		requires std::is_arithmetic_v<TValue>
+    constexpr Vector2D<TValue> Vector2D<TValue>::operator+(const Vector2D<TValue>& other_) const noexcept
+    {
+        return Vector2D<TValue>(x + other_.x, y + other_.y);
+	}
+
+    template <typename TValue>
+        requires std::is_arithmetic_v<TValue>
+    constexpr Vector2D<TValue>& Vector2D<TValue>::operator+=(const Vector2D<TValue>& other_) noexcept
+    {
+        x += other_.x;
+        y += other_.y;
+
+        return *this;
+	}
+
+    template <typename TValue>
+        requires std::is_arithmetic_v<TValue>
+    constexpr Vector2D<TValue> Vector2D<TValue>::operator-(const Vector2D<TValue>& other_) const noexcept
+    {
+        return Vector2D<TValue>(x - other_.x, y - other_.y);
+	}
+
+    template <typename TValue>
+        requires std::is_arithmetic_v<TValue>
+    constexpr Vector2D<TValue>& Vector2D<TValue>::operator-=(const Vector2D<TValue>& other_) noexcept
+    {
+        x -= other_.x;
+        y -= other_.y;
+
+        return *this;
+	}
+
+    template <typename TValue>
+        requires std::is_arithmetic_v<TValue>
+    constexpr Vector2D<TValue> Vector2D<TValue>::operator*(TValue scalar_) const noexcept
+    {
+        return Vector2D<TValue>(x * scalar_, y * scalar_);
+    }
+    
+    template <typename TValue>
+        requires std::is_arithmetic_v<TValue>
+    constexpr Vector2D<TValue>& Vector2D<TValue>::operator*=(TValue scalar_) noexcept
+    {
+        x *= scalar_;
+        y *= scalar_;
+        return *this;
+    }
+
+    template <typename TValue>
+        requires std::is_arithmetic_v<TValue>
+    constexpr Vector2D<TValue> Vector2D<TValue>::operator/(TValue scalar) const noexcept
+    {
+        return Vector2D<TValue>(x / scalar, y / scalar);
+    }
+
+    template <typename TValue>
+        requires std::is_arithmetic_v<TValue>
+    constexpr Vector2D<TValue>& Vector2D<TValue>::operator/=(TValue scalar) noexcept
+    {
+        x /= scalar;
+        y /= scalar;
+
+        return *this;
+	}
 } // namespace Core::Math
 
 #endif // !AMUSE_INCLUDE_VECTOR2D_H
