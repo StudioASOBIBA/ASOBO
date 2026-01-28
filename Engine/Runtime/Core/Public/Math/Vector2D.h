@@ -37,7 +37,22 @@ namespace Amuse::Math
         [[nodiscard]]
         constexpr const TValue& operator[](std::size_t index_) const noexcept
         {
-            return values[index_];
+            switch (index_)
+            {
+                case 0:
+                {
+                    return x;
+                }
+				case 1:
+                {
+					return y;
+                }
+                default:
+                {
+                    static_assert(index_ < 2, "Index out of bounds in Vector2D.");
+                    break;
+                }
+            }
         }
 
         [[nodiscard]]
