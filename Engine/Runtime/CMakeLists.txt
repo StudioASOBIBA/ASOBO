@@ -42,6 +42,8 @@ target_compile_definitions(Amuse_ThirdParty
         IMGUI_IMPL_OPENGL_LOADER_GLAD
 )
 
+find_package(OpenGL REQUIRED)
+
 add_subdirectory("App")
 add_subdirectory("Core")
 
@@ -58,6 +60,6 @@ target_link_libraries(AmuseRuntime INTERFACE
     PRIVATE
         Amuse_ThirdParty
         glfw    
-        OpenGL32
+        OpenGL::GL
         spdlog::spdlog
 )

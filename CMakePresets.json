@@ -1,4 +1,4 @@
-{
+﻿{
   "version": 3,
   "cmakeMinimumRequired": {
     "major": 3,
@@ -13,7 +13,7 @@
     },
     {
       "name": "linux-base",
-      "generator": "MinGW Makefiles",
+      "generator": "Ninja",
       "hidden": true
     },
     {
@@ -22,7 +22,7 @@
       "inherits": [
         "win32-base"
       ],
-      "binaryDir": "${sourceDir}/Binaries/x64/Debug/win32",
+      "binaryDir": "${sourceDir}/Binaries/x64/Debug/Win32",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
         "CMAKE_SYSTEM_PROCESSOR": "x64"
@@ -34,7 +34,7 @@
       "inherits": [
         "win32-base"
       ],
-      "binaryDir": "${sourceDir}/Binaries/x64/Release/win32",
+      "binaryDir": "${sourceDir}/Binaries/x64/Release/Win32",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release",
         "CMAKE_SYSTEM_PROCESSOR": "x64"
@@ -46,7 +46,7 @@
       "inherits": [
         "win32-base"
       ],
-      "binaryDir": "${sourceDir}/Binaries/x86/Debug/win32",
+      "binaryDir": "${sourceDir}/Binaries/x86/Debug/Win32",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
         "CMAKE_SYSTEM_PROCESSOR": "x86"
@@ -58,7 +58,7 @@
       "inherits": [
         "win32-base"
       ],
-      "binaryDir": "${sourceDir}/Binaries/x86/Release/win32",
+      "binaryDir": "${sourceDir}/Binaries/x86/Release/Win32",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release",
         "CMAKE_SYSTEM_PROCESSOR": "x86"
@@ -70,7 +70,7 @@
       "inherits": [
         "linux-base"
       ],
-      "binaryDir": "${sourceDir}/Binaries/x64/Debug/linux",
+      "binaryDir": "${sourceDir}/Binaries/x64/Debug/Linux",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
         "CMAKE_SYSTEM_PROCESSOR": "x86_64"
@@ -82,7 +82,7 @@
       "inherits": [
         "linux-base"
       ],
-      "binaryDir": "${sourceDir}/Binaries/x64/Release/linux",
+      "binaryDir": "${sourceDir}/Binaries/x64/Release/Linux",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release",
         "CMAKE_SYSTEM_PROCESSOR": "x86_64"
@@ -94,7 +94,7 @@
       "inherits": [
         "linux-base"
       ],
-      "binaryDir": "${sourceDir}/Binaries/x86/Debug/linux",
+      "binaryDir": "${sourceDir}/Binaries/x86/Debug/Linux",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
         "CMAKE_SYSTEM_PROCESSOR": "i386"
@@ -106,7 +106,7 @@
       "inherits": [
         "linux-base"
       ],
-      "binaryDir": "${sourceDir}/Binaries/x86/Release/linux",
+      "binaryDir": "${sourceDir}/Binaries/x86/Release/Linux",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release",
         "CMAKE_SYSTEM_PROCESSOR": "i386"
