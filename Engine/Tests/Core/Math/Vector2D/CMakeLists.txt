@@ -1,13 +1,31 @@
 link_libraries(AmuseCore)
 
-add_executable(Operation
-	"Operation.cpp"
+add_executable(Arithmetic
+	"Arithmetic.cpp"
+)
+add_executable(Assignment
+	"Assignment.cpp"
+)
+add_executable(Comparison
+	"Comparison.cpp"
 )
 add_executable(Print
 	"Print.cpp"
 )
 
-target_link_libraries(Operation
+target_link_libraries(Arithmetic
+	PRIVATE
+		AmuseCore
+)
+target_link_libraries(Assignment
+	PRIVATE
+		AmuseCore
+)
+target_link_libraries(Comparison
+	PRIVATE
+		AmuseCore
+)
+target_link_libraries(Print
 	PRIVATE
 		AmuseCore
 )

@@ -1,15 +1,17 @@
 #ifndef AMUSE_INCLUDE_APPLICATION_H
 #define AMUSE_INCLUDE_APPLICATION_H
 
+#include "Window.h"
+
+#include "Math/Vector2D.h"
+
 #include <format>
 #include <memory>
 #include <string>
 #include <string_view>
 #include <vector>
 
-#include "Window.h"
-
-#include "Math/Vector2D.h"
+using namespace Amuse::Core;
 
 namespace Amuse::App
 {

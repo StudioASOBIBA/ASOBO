@@ -8,6 +8,14 @@
 
 namespace Amuse::App
 {
+    namespace
+    {
+        void LogGlfwError(int errorCode, const char* description)
+        {
+            std::cerr << "[GLFW] Error " << errorCode << ": " << description << std::endl;
+        }
+    }
+
     Application::Application(const Application::MetaData&      MetaData,
                              const Application::Specification& specification_) noexcept
 		: isRunning(false)
@@ -15,8 +23,11 @@ namespace Amuse::App
 		, metaData(MetaData)
 		, specification(specification_)
     {
+        glfwSetErrorCallback(LogGlfwError);
+
         if (!glfwInit())
         {
+            std::cerr << "[CRITICAL] GLFW initialization failed." << std::endl;
             return;
         }
 
@@ -26,6 +37,10 @@ namespace Amuse::App
         windowSpecifications.size     = specification.resolution;
         
 		auto mainWindow = EmplaceWindow(windowSpecifications);
+        if (!mainWindow)
+        {
+            std::cerr << "[CRITICAL] Failed to create main window." << std::endl;
+        }
     }
 
     Application::~Application() noexcept
@@ -113,10 +128,18 @@ namespace Amuse::App
         isRunning = false;
     }
 
-    Window* Application::EmplaceWindow(const Window::Specification& specification_)
+    Window* Application::EmplaceWindow(const Window::Specification& spec)
     {
-        auto ptr = std::make_unique<Window>(specification_);
-        ptr->Create();
+        auto ptr = std::make_unique<Window>(spec);
+        try
+        {
+            ptr->Create();
+        }
+        catch (const std::exception& e)
+        {
+            std::cerr << "[CRITICAL] Window creation failed: " << e.what() << std::endl;
+            return nullptr;
+        }
 
         Window* raw = ptr.get();
         windows.emplace_back(std::move(ptr));

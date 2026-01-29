@@ -15,6 +15,7 @@ add_library(AmuseApp STATIC
 )
 
 target_include_directories(AmuseApp PUBLIC
+    "${CMAKE_CURRENT_SOURCE_DIR}"
     "${CMAKE_CURRENT_SOURCE_DIR}/Public"
 )
 
@@ -24,5 +25,5 @@ target_link_libraries(AmuseApp
     PRIVATE
         Amuse_ThirdParty
         glfw
-        OpenGL32
+        OpenGL::GL
 )

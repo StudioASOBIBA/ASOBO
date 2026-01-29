@@ -1,10 +1,12 @@
 #ifndef GUARD_WINDOW_H
 #define GUARD_WINDOW_H
 
+#include "Math/Vector2D.h"
+
 #include <string>
 #include <string_view>
 
-#include "Math/Vector2D.h"
+using namespace Amuse::Core;
 
 struct GLFWwindow;
 
@@ -43,7 +45,7 @@ namespace Amuse::App
         };
 
         /**
-         * @brief 기본 생성자입니다.
+         * @brief 생성자.
          *
          * @param specification_ 윈도우의 사양.
          */

@@ -1,19 +1,19 @@
-﻿{
+{
   "version": 3,
   "cmakeMinimumRequired": {
     "major": 3,
     "minor": 27,
-    "patch": 9
+    "patch": 1
   },
   "configurePresets": [
     {
       "name": "win32-base",
-      "generator": "Visual Studio 17 2022",
+      "generator": "MinGW Makefiles",
       "hidden": true
     },
     {
       "name": "linux-base",
-      "generator": "Ninja",
+      "generator": "Visual Studio 17 2022",
       "hidden": true
     },
     {
